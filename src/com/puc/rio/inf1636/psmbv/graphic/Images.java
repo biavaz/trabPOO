@@ -1,3 +1,4 @@
+package com.puc.rio.inf1636.psmbv.graphic;
 import java.awt.Image;
 
 import javax.swing.ImageIcon;
@@ -5,6 +6,8 @@ import javax.swing.JPanel;
 
 
 public class Images extends JPanel {
+	
+	private static final long serialVersionUID = 1L;
 	
 	public Image bispob, cavalob, damab, peaob, reib, torreb;
 	public Image bispop, cavalop, damap, peaop, reip, torrep;
