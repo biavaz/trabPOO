@@ -9,7 +9,7 @@ public class Coordenada {
 	
 	public Coordenada(int x, int y){
 		if(x > 7 || x < 0 || y > 7 || y < 0)
-			throw new IllegalArgumentException("Coordenadas inválidas");
+			throw new IllegalArgumentException("Coordenadas inv‚Ä°lidas");
 		
 		this.setCoordHorz(x);
 		this.coordVert = y;
@@ -19,7 +19,7 @@ public class Coordenada {
 	
 	public Coordenada(int x, int y, Peca p){
 		if(x > 7 || x < 0 || y > 7 || y < 0)
-			throw new IllegalArgumentException("Coordenadas inválidas");
+			throw new IllegalArgumentException("Coordenadas inv‚Ä°lidas");
 		
 		this.setCoordHorz(x);
 		this.coordVert = y;
@@ -29,10 +29,10 @@ public class Coordenada {
 	
 	public ArrayList<Coordenada> getMoves(){
 		if(this.p == null){
-			System.out.println("Coordenada sem peça");
+			System.out.println("Coordenada sem peÔøΩa");
 			return null;
 		}
-		return p.getPossibleMovements(this.coordVert, this.coordHorz);
+		return p.getPossibleMovements(this.coordHorz, this.coordVert);
 		
 	}
 
@@ -62,6 +62,14 @@ public class Coordenada {
 	
 	public boolean isOccupied(){
 		return this.p == null;
+	}
+	
+	@Override
+	public String toString(){
+		String coord = "X = " + this.getCoordHorz() + " Y " +
+				"= " + this.getCoordVert() + " Pe√ßa = " + ((this.getPeca()!= null)?this.getPeca().getName(): " vazio") + " Cor = " +((this.getPeca()!= null)?this.getPeca().getColor(): " vazio") ;
+	
+		return coord;
 	}
 
 }

@@ -40,7 +40,7 @@ public class MatrizPecas {
 	}
 
 	public void moveTo(Coordenada c, int x, int y) {
-		Coordenada c1 = this.vertList.get(c.getCoordVert()).set(c.getCoordHorz(), new Coordenada(c.getCoordVert(), c.getCoordHorz(), null));
+		Coordenada c1 = this.vertList.get(c.getCoordVert()).set(c.getCoordHorz(), new Coordenada(c.getCoordHorz(), c.getCoordVert(), null));
 		c1.setCoordHorz(x);
 		c1.setCoordVert(y);
 		

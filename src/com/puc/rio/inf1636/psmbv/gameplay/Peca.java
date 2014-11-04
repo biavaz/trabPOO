@@ -12,6 +12,7 @@ import com.puc.rio.inf1636.psmbv.gameplay.pecas.Torre;
 public abstract class Peca implements Moveable{
 	
 	protected Image icon;
+	String name;
 	protected char color;
 	
 	public Peca(char color){
@@ -93,6 +94,14 @@ public abstract class Peca implements Moveable{
 
 	public void setColor(char color) {
 		this.color = color;
+	}
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getName() {
+		return name;
 	}
 
 }
