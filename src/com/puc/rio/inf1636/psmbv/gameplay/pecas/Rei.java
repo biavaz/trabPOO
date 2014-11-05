@@ -35,13 +35,9 @@ public class Rei extends Peca {
 			//validando a posicao
 			if (vertsy[vert]>=0 && vertsy[vert]<8 && vertsx[vert]>=0 && vertsx[vert]<8){
 			
-			System.out.println("x: "+ vertsx[vert]+ "y: "+vertsy[vert]);
-			Peca p = t.getPecaAtCoordenada(vertsy[vert], vertsx[vert]);
-			if(p==null)
-				System.out.println("sem peca");
-			else
-				System.out.println(p.getName());
 			
+			Peca p = t.getPecaAtCoordenada(vertsx[vert], vertsy[vert]);
+						
 			//casa livre
 			if(p == null){
 				coords.add(t.getCoordenada(vertsx[vert], vertsy[vert]));

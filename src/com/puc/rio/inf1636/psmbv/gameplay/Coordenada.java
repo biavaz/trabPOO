@@ -1,8 +1,11 @@
 package com.puc.rio.inf1636.psmbv.gameplay;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Coordenada {
+public class Coordenada implements Serializable{
+
+	private static final long serialVersionUID = 1L;
 	private int coordVert;
 	private int coordHorz;
 	private Peca p;
@@ -70,6 +73,12 @@ public class Coordenada {
 				"= " + this.getCoordVert() + " Peça = " + ((this.getPeca()!= null)?this.getPeca().getName(): " vazio") + " Cor = " +((this.getPeca()!= null)?this.getPeca().getColor(): " vazio") ;
 	
 		return coord;
+	}
+	
+	@Override
+	public boolean equals(Object arg0) {
+		Coordenada c = (Coordenada) arg0;
+		return this.getCoordHorz() == c.getCoordHorz() && this.getCoordVert() == c.getCoordVert();
 	}
 
 }

@@ -1,6 +1,7 @@
 package com.puc.rio.inf1636.psmbv.gameplay;
 
 import java.awt.Image;
+import java.io.Serializable;
 
 import com.puc.rio.inf1636.psmbv.gameplay.pecas.Bispo;
 import com.puc.rio.inf1636.psmbv.gameplay.pecas.Cavalo;
@@ -9,10 +10,11 @@ import com.puc.rio.inf1636.psmbv.gameplay.pecas.Rainha;
 import com.puc.rio.inf1636.psmbv.gameplay.pecas.Rei;
 import com.puc.rio.inf1636.psmbv.gameplay.pecas.Torre;
 
-public abstract class Peca implements Moveable{
+public abstract class Peca implements Moveable, Serializable{
 	
+	private static final long serialVersionUID = 1L;
 	protected Image icon;
-	String name;
+	protected String name;
 	protected char color;
 	
 	public Peca(char color){

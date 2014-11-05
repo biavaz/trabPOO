@@ -36,7 +36,7 @@ public class Cavalo extends Peca {
 			//validando a posicao
 			if (vertsy[vert]>=0 && vertsy[vert]<8 && vertsx[vert]>=0 && vertsx[vert]<8){
 				
-				Peca p = t.getPecaAtCoordenada(vertsy[vert], vertsx[vert]);
+				Peca p = t.getPecaAtCoordenada(vertsx[vert], vertsy[vert]);
 								
 				if(p == null || p.getColor() != this.color){
 					coords.add(t.getCoordenada(vertsx[vert], vertsy[vert]));

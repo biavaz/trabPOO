@@ -1,9 +1,11 @@
 package com.puc.rio.inf1636.psmbv.gameplay;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 
-public class MatrizPecas {
+public class MatrizPecas implements Serializable{
 	
+	private static final long serialVersionUID = 1L;
 	private LinkedList<LinkedList<Coordenada>> vertList = new LinkedList<LinkedList<Coordenada>>();
 	
 	public MatrizPecas(){
