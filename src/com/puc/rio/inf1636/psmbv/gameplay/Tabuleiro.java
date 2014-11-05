@@ -1,9 +1,11 @@
 package com.puc.rio.inf1636.psmbv.gameplay;
 import java.awt.*;
 import java.awt.geom.*;
+import java.io.Serializable;
+
 import javax.swing.*;
 
-public class Tabuleiro extends JPanel{
+public class Tabuleiro extends JPanel implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	private static int LARGURA_CASA = 60;
@@ -11,6 +13,8 @@ public class Tabuleiro extends JPanel{
 	
 	private static Tabuleiro INSTANCE = null;
 	private MatrizPecas matrizPecas = null;
+	private Turno turno;
+	private Coordenada clickedCoordenada;
 		
 	private Tabuleiro(){
 		this.matrizPecas = new MatrizPecas();
@@ -23,6 +27,30 @@ public class Tabuleiro extends JPanel{
 		return INSTANCE;
 	}
 	
+	public MatrizPecas getMatrizPecas() {
+		return matrizPecas;
+	}
+
+	public void setMatrizPecas(MatrizPecas matrizPecas) {
+		this.matrizPecas = matrizPecas;
+	}
+
+	public Turno getTurno() {
+		return turno;
+	}
+
+	public void setTurno(Turno turno) {
+		this.turno = turno;
+	}
+
+	public Coordenada getClickedCoordenada() {
+		return clickedCoordenada;
+	}
+
+	public void setClickedCoordenada(Coordenada clickedCoordenada) {
+		this.clickedCoordenada = clickedCoordenada;
+	}
+
 	public Peca getPecaAtCoordenada(int x, int y){
 		return matrizPecas.getCoordenada(x, y).getPeca();
 	}
@@ -41,7 +69,7 @@ public class Tabuleiro extends JPanel{
 						Coordenada coord = this.matrizPecas.getCoordenada(x, y);
 						Peca p = coord.getPeca();
 						if(p != null){
-							g.drawImage(p.icon, LARGURA_CASA*x, ALTURA_CASA*y, LARGURA_CASA, ALTURA_CASA, null);
+							g.drawImage(p.getIcon(), LARGURA_CASA*x, ALTURA_CASA*y, LARGURA_CASA, ALTURA_CASA, null);
 						}
 					} else {
 						g.setColor(Color.BLACK);
@@ -50,7 +78,7 @@ public class Tabuleiro extends JPanel{
 						Coordenada coord = this.matrizPecas.getCoordenada(x, y);
 						Peca p = coord.getPeca();
 						if(p != null){
-							g.drawImage(p.icon, LARGURA_CASA*x, ALTURA_CASA*y, LARGURA_CASA, ALTURA_CASA, null);
+							g.drawImage(p.getIcon(), LARGURA_CASA*x, ALTURA_CASA*y, LARGURA_CASA, ALTURA_CASA, null);
 						}
 					}
 				} else {
@@ -61,7 +89,7 @@ public class Tabuleiro extends JPanel{
 						Coordenada coord = this.matrizPecas.getCoordenada(x, y);
 						Peca p = coord.getPeca();
 						if(p != null){
-							g.drawImage(p.icon, LARGURA_CASA*x, ALTURA_CASA*y, LARGURA_CASA, ALTURA_CASA, null);
+							g.drawImage(p.getIcon(), LARGURA_CASA*x, ALTURA_CASA*y, LARGURA_CASA, ALTURA_CASA, null);
 						}
 					} else {
 						g.setColor(Color.WHITE);
@@ -70,7 +98,7 @@ public class Tabuleiro extends JPanel{
 						Coordenada coord = this.matrizPecas.getCoordenada(x, y);
 						Peca p = coord.getPeca();
 						if(p != null){
-							g.drawImage(p.icon, LARGURA_CASA*x, ALTURA_CASA*y, LARGURA_CASA, ALTURA_CASA, null);
+							g.drawImage(p.getIcon(), LARGURA_CASA*x, ALTURA_CASA*y, LARGURA_CASA, ALTURA_CASA, null);
 						}
 					}
 				}

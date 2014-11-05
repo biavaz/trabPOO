@@ -2,23 +2,22 @@ package com.puc.rio.inf1636.psmbv.gameplay.pecas;
 
 import java.util.ArrayList;
 
-import javax.swing.ImageIcon;
-
 import com.puc.rio.inf1636.psmbv.gameplay.Coordenada;
 import com.puc.rio.inf1636.psmbv.gameplay.Peca;
 import com.puc.rio.inf1636.psmbv.gameplay.Tabuleiro;
 
 public class Bispo extends Peca {
-	
-	
-	
+	private static final long serialVersionUID = 1L;
+
 	public Bispo(char c) {
 		super(c);
 		this.setName("Bispo");
+		/*
 		if(c == 'p')
 			this.icon = new ImageIcon ("pecas/p_bispo.png").getImage();
 		else
 			this.icon = new ImageIcon ("pecas/b_bispo.png").getImage();
+			*/
 	}
 	
 	public ArrayList<Coordenada> getPossibleMovements(int x, int y) {

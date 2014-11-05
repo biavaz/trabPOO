@@ -9,6 +9,7 @@ import com.puc.rio.inf1636.psmbv.gameplay.pecas.Peao;
 import com.puc.rio.inf1636.psmbv.gameplay.pecas.Rainha;
 import com.puc.rio.inf1636.psmbv.gameplay.pecas.Rei;
 import com.puc.rio.inf1636.psmbv.gameplay.pecas.Torre;
+import com.puc.rio.inf1636.psmbv.graphic.ImageHelper;
 
 public abstract class Peca implements Moveable, Serializable{
 	
@@ -83,13 +84,13 @@ public abstract class Peca implements Moveable, Serializable{
 	}
 
 	public Image getIcon() {
-		return icon;
+		return ImageHelper.getIconFromPeca(this);
 	}
-
+	/*
 	public void setIcon(Image icon) {
 		this.icon = icon;
 	}
-
+	*/
 	public char getColor() {
 		return color;
 	}
