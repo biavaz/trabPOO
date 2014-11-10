@@ -115,6 +115,15 @@ public class Tabuleiro extends JPanel implements Serializable{
 		Rectangle2D rt1 = new Rectangle2D.Double(LARGURA_CASA*x, y*ALTURA_CASA, LARGURA_CASA, ALTURA_CASA);
 		g.draw(rt1);
 	}
+	
+	public void paintPeaoEspecial (Coordenada c){
+		Graphics2D g = (Graphics2D) this.getGraphics();
+		Peca p = c.getPeca();
+		if(p != null){
+			g.drawImage(p.getIcon(), LARGURA_CASA * c.getCoordHorz(), ALTURA_CASA * c.getCoordVert(), LARGURA_CASA, ALTURA_CASA, null);
+		}
+	}
+	
 
 	public Coordenada getCoordenada(int x, int y) {
 		return matrizPecas.getCoordenada(x, y);
@@ -127,6 +136,6 @@ public class Tabuleiro extends JPanel implements Serializable{
 	public Coordenada getCoordenadaByXY(int x, int y) {
 		return matrizPecas.getCoordenada(x/LARGURA_CASA, y/ALTURA_CASA);
 	}
-		
+
 }
 
