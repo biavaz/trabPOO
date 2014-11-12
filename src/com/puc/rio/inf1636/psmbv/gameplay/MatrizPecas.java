@@ -40,9 +40,14 @@ public class MatrizPecas implements Serializable{
 	public Coordenada getCoordenada(int x, int y){
 		return this.vertList.get(y).get(x);
 	}
+	
+	public void setCoordenada(Coordenada c){
+		this.vertList.get(c.getCoordVert()).set(c.getCoordHorz(), c);
+	}
 
 	public void moveTo(Coordenada c, int x, int y) {
-		Coordenada c1 = this.vertList.get(c.getCoordVert()).set(c.getCoordHorz(), new Coordenada(c.getCoordHorz(), c.getCoordVert(), null));
+		Coordenada c1 = this.vertList.get(c.getCoordVert()).
+				set(c.getCoordHorz(), new Coordenada(c.getCoordHorz(), c.getCoordVert(), null));
 		c1.setCoordHorz(x);
 		c1.setCoordVert(y);
 		
