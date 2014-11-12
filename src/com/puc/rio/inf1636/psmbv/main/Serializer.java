@@ -138,9 +138,9 @@ public class Serializer {
 			obj = objectReader.readObject();
 			objectReader.close();
 		} catch(IOException ex) {
-			ex.printStackTrace();
+			//ex.printStackTrace();
 		} catch(Exception ex) {
-			ex.printStackTrace();
+			//ex.printStackTrace();
 		}
 		closeRead();
 		return (Serializable)obj;

@@ -50,7 +50,7 @@ public class Peao extends Peca {
 					coords.add(t.getCoordenada(x+1, y+1));
 				}
 			
-				if(x-1>0){
+				if(x-1>=0){
 					p = t.getPecaAtCoordenada(x-1, y+1);
 					if (p != null && p.getColor() != this.color)
 						coords.add(t.getCoordenada(x-1, y+1));
