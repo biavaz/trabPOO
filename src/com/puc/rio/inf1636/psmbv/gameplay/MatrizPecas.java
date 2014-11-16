@@ -3,6 +3,9 @@ package com.puc.rio.inf1636.psmbv.gameplay;
 import java.io.Serializable;
 import java.util.LinkedList;
 
+import com.puc.rio.inf1636.psmbv.gameplay.pecas.Rei;
+import com.puc.rio.inf1636.psmbv.gameplay.pecas.Torre;
+
 public class MatrizPecas implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
@@ -46,11 +49,20 @@ public class MatrizPecas implements Serializable{
 	}
 
 	public void moveTo(Coordenada c, int x, int y) {
+		if(c.getPeca()!=null && c.getPeca().getName().equals("Rei")){
+			Rei r = (Rei) c.getPeca();
+			r.setMovimentada(true);
+		}
+		if(c.getPeca()!=null && c.getPeca().getName().equals("Torre")){
+			Torre t = (Torre) c.getPeca();
+			t.setMovimentada(true);
+		}
+				
 		Coordenada c1 = this.vertList.get(c.getCoordVert()).
 				set(c.getCoordHorz(), new Coordenada(c.getCoordHorz(), c.getCoordVert(), null));
 		c1.setCoordHorz(x);
 		c1.setCoordVert(y);
-		
+				
 		this.vertList.get(y).set(x, c1);
 	}
 

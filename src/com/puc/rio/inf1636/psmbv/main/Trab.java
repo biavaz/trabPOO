@@ -15,15 +15,18 @@ import javax.swing.JOptionPane;
 
 import com.puc.rio.inf1636.psmbv.gameplay.Coordenada;
 import com.puc.rio.inf1636.psmbv.gameplay.MatrizPecas;
+import com.puc.rio.inf1636.psmbv.gameplay.MovimentosEspeciais;
 import com.puc.rio.inf1636.psmbv.gameplay.Peca;
 import com.puc.rio.inf1636.psmbv.gameplay.Tabuleiro;
 import com.puc.rio.inf1636.psmbv.gameplay.Turno;
 import com.puc.rio.inf1636.psmbv.gameplay.pecas.Rainha;
+import com.puc.rio.inf1636.psmbv.gameplay.pecas.Torre;
 
 public class Trab implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private static Tabuleiro t = null;
+	private static MovimentosEspeciais m = new MovimentosEspeciais();
 
 	private static JFrame f = new JFrame("TRABALHO INF1636 - XADREZ");
 	
@@ -34,7 +37,10 @@ public class Trab implements Serializable {
 
 		// File Menu, F - Mnemonic
 		JMenu fileMenu = new JMenu("File");
+		JMenu fileMenu2 = new JMenu ("Movimentos Especiais");
 		menuBar.add(fileMenu);
+		menuBar.add(fileMenu2);
+		
 
 		// File->New, N - Mnemonic
 		JMenuItem newMenuItem = new JMenuItem("New");
@@ -58,9 +64,41 @@ public class Trab implements Serializable {
 			}
 		});
 		
+		JMenuItem RoqueMenuItem = new JMenuItem("Roque");
+		RoqueMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if(t.getTurno()== Turno.TurnoBrancoEscolher || t.getTurno() == Turno.TurnoBrancoMovimentar){
+					if (m.roque(f, 'b')==false){
+						t.repaint();
+						t.setTurno(Turno.TurnoBrancoEscolher);
+					}
+						
+				}
+				else{
+					if (m.roque(f, 'p')==true){
+						
+						t.repaint();
+						t.setTurno(Turno.TurnoPretoEscolher);
+					}
+						
+				}
+					
+			}
+		});
+		
+		JMenuItem EnPassantMenuItem = new JMenuItem("En Passant");
+		EnPassantMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				m.enPassant(f);
+			}
+		});
+		
+		
 		fileMenu.add(newMenuItem);
 		fileMenu.add(saveMenuItem);
 		fileMenu.add(loadMenuItem);
+		fileMenu2.add(RoqueMenuItem);
+		fileMenu2.add(EnPassantMenuItem);
 
 		f.setJMenuBar(menuBar);
 
@@ -85,21 +123,32 @@ public class Trab implements Serializable {
 		Coordenada c = t.getCoordenadaByXY(x, y);
 		System.out.println(c.toString());
 		try {
-			switch (t.getTurno()) {
-			case TurnoBrancoEscolher:
-				t.setClickedCoordenada(escolherPecaBranca(c));
-				break;
-			case TurnoPretoEscolher:
-				t.setClickedCoordenada(escolherPecaPreta(c));
-				break;
-			case TurnoBrancoMovimentar:
-				t.setClickedCoordenada(movimentarPecaBranca(c));
-				break;
-			case TurnoPretoMovimentar:
-				t.setClickedCoordenada(movimentarPecaPreta(c));
-				break;
-			default:
-				break;
+			if(MovimentosEspeciais.roqueAtivo==1){
+				if(t.getTurno()== Turno.TurnoBrancoEscolher || t.getTurno() == Turno.TurnoBrancoMovimentar){
+					m.trocaRoque(c, 'b');
+				}
+				else{
+					m.trocaRoque(c, 'p');
+				}
+			}
+			
+			else{
+				switch (t.getTurno()) {
+				case TurnoBrancoEscolher:
+					t.setClickedCoordenada(escolherPecaBranca(c));
+					break;
+				case TurnoPretoEscolher:
+					t.setClickedCoordenada(escolherPecaPreta(c));
+					break;
+				case TurnoBrancoMovimentar:
+					t.setClickedCoordenada(movimentarPecaBranca(c));
+					break;
+				case TurnoPretoMovimentar:
+					t.setClickedCoordenada(movimentarPecaPreta(c));
+					break;
+				default:
+					break;
+				}
 			}
 		} catch (RuntimeException ex) {
 			if (ex.getMessage() == null)
@@ -184,7 +233,7 @@ public class Trab implements Serializable {
 		t.moveTo(t.getClickedCoordenada(), c.getCoordHorz(), c.getCoordVert());
 
 		// verificar se o rei da cor fica ameaçado
-		if (!t.reisalvo('b')) {
+		if (!m.reisalvo('b')) {
 			JOptionPane.showMessageDialog(f, "Movimento Indisponivel, Rei ficará amreaçado", "Xadrez", 
 					JOptionPane.INFORMATION_MESSAGE);
 			t.moveTo(c, x, y);
@@ -196,14 +245,14 @@ public class Trab implements Serializable {
 		t.repaint();
 		
 		//verificar se ocorreu XEQUE MATE
-		if(t.xequeMate('b')){
+		if(m.xequeMate('b')){
 			JOptionPane.showMessageDialog(f, "XEQUE MATE - PARABENS JOGADOR BRANCO", "Xadrez",
 					JOptionPane.INFORMATION_MESSAGE);
 			f.dispose();
 		}
 		
 		//verificar se ocorreu XEQUE
-		else if(t.xeque('b')){
+		else if(m.xeque('b')){
 			JOptionPane.showMessageDialog(f, "XEQUE", "Xadrez", JOptionPane.INFORMATION_MESSAGE);
 		}
 		
@@ -260,7 +309,7 @@ public class Trab implements Serializable {
 		t.moveTo(t.getClickedCoordenada(), c.getCoordHorz(), c.getCoordVert());
 
 		// verificar se o rei da cor fica ameaçado
-		if (!t.reisalvo('p')) {
+		if (!m.reisalvo('p')) {
 			JOptionPane.showMessageDialog(f, "Movimento Indisponivel, Rei ficará amreaçado", "Xadrez", 
 					JOptionPane.INFORMATION_MESSAGE);
 			t.moveTo(c, x, y);
@@ -273,14 +322,14 @@ public class Trab implements Serializable {
 		t.repaint();
 		
 		//verificar se ocorreu XEQUE MATE
-		if(t.xequeMate('p')){
+		if(m.xequeMate('p')){
 			JOptionPane.showMessageDialog(f, "XEQUE MATE - PARABENS JOGADOR PRETO", "Xadrez",
 					JOptionPane.INFORMATION_MESSAGE);
 			f.dispose();
 		}
 		
 		//verificar se ocorreu XEQUE
-		else if(t.xeque('p')){
+		else if(m.xeque('p')){
 			JOptionPane.showMessageDialog(f, "XEQUE", "Xadrez",
 					JOptionPane.INFORMATION_MESSAGE);
 		}
@@ -292,10 +341,11 @@ public class Trab implements Serializable {
 		int result = JOptionPane.showConfirmDialog(f, "Deseja começar um novo jogo?",
 		        "Xadrez", JOptionPane.OK_CANCEL_OPTION);
 		if(result == JOptionPane.OK_OPTION){
-			MatrizPecas m = new MatrizPecas();
-			t.setMatrizPecas(m);
-			t.repaint();
+			t.setClickedCoordenada(null);
+			t.setMatrizPecas(new MatrizPecas());
 			t.setTurno(Turno.TurnoBrancoEscolher);
+			MovimentosEspeciais.roqueAtivo=0;
+			t.repaint();
 		}
 	}
 	
@@ -325,6 +375,7 @@ public class Trab implements Serializable {
 
 			Serializer s = new Serializer(entrada);
 			Tabuleiro tab = (Tabuleiro) s.getObjectOnSession();
+			MovimentosEspeciais.roqueAtivo=0;
 			t.setMatrizPecas(tab.getMatrizPecas());
 			t.setTurno(tab.getTurno());
 			t.setClickedCoordenada(tab.getClickedCoordenada());
@@ -334,5 +385,5 @@ public class Trab implements Serializable {
 					"Xadrez", JOptionPane.ERROR_MESSAGE);
 		}
 	}
-
 }
+

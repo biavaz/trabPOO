@@ -8,15 +8,13 @@ import com.puc.rio.inf1636.psmbv.gameplay.Tabuleiro;
 
 public class Rei extends Peca {
 	
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
+	private boolean movimentada;
 
 	public Rei(char c) {
 		super(c);
 		this.setName("Rei");
+		this.setMovimentada(false);
 		/*if(c == 'p')
 			this.icon = new ImageIcon ("pecas/p_rei.png").getImage();
 		else
@@ -55,6 +53,14 @@ public class Rei extends Peca {
 		}
 		
 		return coords;
+	}
+
+	public boolean getMovimentada() {
+		return movimentada;
+	}
+
+	public void setMovimentada(boolean movimentada) {
+		this.movimentada = movimentada;
 	}
 	
 }

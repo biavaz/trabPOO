@@ -9,10 +9,13 @@ import com.puc.rio.inf1636.psmbv.gameplay.Tabuleiro;
 public class Torre extends Peca {
 
 	private static final long serialVersionUID = 1L;
+	
+	private boolean movimentada;
 
 	public Torre(char c) {
 		super(c);
 		this.setName("Torre");
+		this.setMovimentada(false);
 		/*if(c == 'p')
 			this.icon = new ImageIcon ("pecas/p_torre.png").getImage();
 		else
@@ -70,6 +73,14 @@ public class Torre extends Peca {
 				break;
 		}
 		return coords;
+	}
+
+	public boolean getMovimentada() {
+		return movimentada;
+	}
+
+	public void setMovimentada(boolean movimentada) {
+		this.movimentada = movimentada;
 	}
 
 }
