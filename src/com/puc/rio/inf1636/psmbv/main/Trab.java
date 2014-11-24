@@ -1,5 +1,6 @@
 package com.puc.rio.inf1636.psmbv.main;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -12,6 +13,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 import com.puc.rio.inf1636.psmbv.gameplay.Coordenada;
 import com.puc.rio.inf1636.psmbv.gameplay.MatrizPecas;
@@ -104,7 +106,7 @@ public class Trab implements Serializable {
 
 		t = Tabuleiro.getInstance();
 		f.add(t);
-		f.setSize(500, 535);
+		f.setSize(500, 575);
 		f.setVisible(true);
 		t.setTurno(Turno.TurnoBrancoEscolher);
 		t.addMouseListener(new MouseAdapter() {
@@ -114,6 +116,7 @@ public class Trab implements Serializable {
 				handleMouseClick(event);
 			}
 		});
+		
 	}
 
 	public static void handleMouseClick(MouseEvent click) {

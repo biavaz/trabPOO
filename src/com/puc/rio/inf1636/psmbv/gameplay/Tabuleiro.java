@@ -110,6 +110,13 @@ public class Tabuleiro extends JPanel implements Serializable{
 			}
 		}
 		
+		if(turno == Turno.TurnoPretoEscolher)
+			g.setColor(Color.BLACK);
+		else if(turno == Turno.TurnoBrancoEscolher)
+			g.setColor(Color.WHITE);
+		
+		Rectangle2D rt1 = new Rectangle2D.Double(50, 545, 20, 20);
+		g2d.fill(rt1);
 	
 	}
 	

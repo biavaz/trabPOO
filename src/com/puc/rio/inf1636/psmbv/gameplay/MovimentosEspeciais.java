@@ -387,22 +387,20 @@ public class MovimentosEspeciais {
 					}
 				}
 				if(haPeca==0){
-				t.paintCoordenada(torres.get(1).getCoordHorz(), torres.get(1).getCoordVert());
-				numTorres.add(t.getCoordenada(torres.get(1).getCoordHorz(), torres.get(1).getCoordVert()));
+					t.paintCoordenada(torres.get(1).getCoordHorz(), torres.get(1).getCoordVert());
+					numTorres.add(t.getCoordenada(torres.get(1).getCoordHorz(), torres.get(1).getCoordVert()));
 				}
-			}
-		}
-				
-		else if(torres.get(1).getCoordHorz()<xRei){
-			haPeca=0;
-			for(x=1; x<4; x++){
-				if(t.getCoordenada(x, yRei).getPeca()!=null){
-					haPeca++;
+			} else if(torres.get(1).getCoordHorz()<xRei){
+				haPeca=0;
+				for(x=1; x<4; x++){
+					if(t.getCoordenada(x, yRei).getPeca()!=null){
+						haPeca++;
+					}
 				}
-			}
-			if(haPeca==0){
-				t.paintCoordenada(torres.get(1).getCoordHorz(), torres.get(1).getCoordVert());
-				numTorres.add(t.getCoordenada(torres.get(1).getCoordHorz(), torres.get(1).getCoordVert()));
+				if(haPeca==0){
+					t.paintCoordenada(torres.get(1).getCoordHorz(), torres.get(1).getCoordVert());
+					numTorres.add(t.getCoordenada(torres.get(1).getCoordHorz(), torres.get(1).getCoordVert()));
+				}
 			}
 		}
 		return numTorres;
@@ -418,12 +416,16 @@ public class MovimentosEspeciais {
 				
 				System.out.println("ROQUE");
 				
-				int coordhorz = rei.getCoordHorz();
+				//int coordhorz = rei.getCoordHorz();
 				int coordvert = rei.getCoordVert();
-				Peca coordpeca = c.getPeca();
-				
-				t.moveTo(rei, c.getCoordHorz(), c.getCoordVert());
-				t.setCoordenada(new Coordenada(coordhorz, coordvert, coordpeca));
+				//Peca coordpeca = c.getPeca();
+				if(c.getCoordHorz() < rei.getCoordHorz()){
+					t.moveTo(rei, 2, c.getCoordVert());
+					t.moveTo(c, 3, coordvert);
+				} else {
+					t.moveTo(rei, 6, c.getCoordVert());
+					t.moveTo(c, 5, coordvert);
+				}
 				t.repaint();
 				 if(color == 'p')
 					 t.setTurno(Turno.TurnoBrancoEscolher);
