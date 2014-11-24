@@ -1,6 +1,5 @@
 package com.puc.rio.inf1636.psmbv.main;
 
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -13,7 +12,6 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 
 import com.puc.rio.inf1636.psmbv.gameplay.Coordenada;
 import com.puc.rio.inf1636.psmbv.gameplay.MatrizPecas;
@@ -22,7 +20,6 @@ import com.puc.rio.inf1636.psmbv.gameplay.Peca;
 import com.puc.rio.inf1636.psmbv.gameplay.Tabuleiro;
 import com.puc.rio.inf1636.psmbv.gameplay.Turno;
 import com.puc.rio.inf1636.psmbv.gameplay.pecas.Rainha;
-import com.puc.rio.inf1636.psmbv.gameplay.pecas.Torre;
 
 public class Trab implements Serializable {
 
